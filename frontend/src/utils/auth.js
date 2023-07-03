@@ -1,4 +1,4 @@
-export const baseUrl = "https://auth.nomoreparties.co";
+export const baseUrl = "https://api.starts.mesto.nomoreparties.sbs";
 
 function handleResponse(res) {
     if (res.ok) {
