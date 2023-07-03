@@ -87,9 +87,9 @@ export class Api {
   }*/
 const api = new Api({
   baseUrl: "https://api.starts.mesto.nomoreparties.sbs",
-  /* headers: {
-     authorization: "f25ed207-d78c-464d-b0ee-85c791005c08",
-    "Content-Type": "application/json",
-  }, */
+   headers: {
+     /* authorization: "f25ed207-d78c-464d-b0ee-85c791005c08", */
+     "Content-Type": "application/json",
+  },
 });
 export { api };
