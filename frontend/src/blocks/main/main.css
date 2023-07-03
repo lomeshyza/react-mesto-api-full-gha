@@ -1,0 +1,19 @@
+.main{
+    max-width: 69%;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+@media screen and (max-width: 768px){
+    .main{
+        max-width: 85.5%;
+    }
+}
+@media screen and (max-width: 320px){
+    .main{
+        max-width: 88%;
+        display: flex;
+        flex-direction: column;
+    }
+}

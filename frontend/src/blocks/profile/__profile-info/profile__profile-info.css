@@ -1,0 +1,10 @@
+.profile__profile-info{
+    display: flex;
+    padding-left: 30px;
+    max-width: 100%;
+}
+@media screen and (max-width: 448px){
+    .profile__profile-info{
+        padding-left: 0;
+    }
+}

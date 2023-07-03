@@ -1,0 +1,12 @@
+.profile__image-change{
+border-radius: 50%;
+    height: 120px;
+    width: 120px;
+}
+.profile__image-change:hover{
+    background-image: url('../../../images/edit_btn.svg');
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+    cursor: pointer;   
+}    

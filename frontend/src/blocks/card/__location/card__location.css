@@ -1,0 +1,23 @@
+.card__location{
+    padding: 0;
+    margin: 0;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 214px;
+}
+@media screen and (max-width: 768px){
+    .card__location{
+       font-size: 24px;
+       line-height: 29px;
+       /* max-width: 145px; */
+    }
+}
+@media screen and (max-width: 500px){
+    .card__location{
+       /* max-width: 155px; */
+    }
+}

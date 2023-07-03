@@ -1,0 +1,16 @@
+.popup__confirm-container{
+    width: 430px;
+    min-height: 181px;
+    display: flex;
+    flex-direction: column;
+    }
+@media screen and (max-width: 768px){
+    .popup__confirm-container{
+    width: 430px; 
+    }
+}
+@media screen and (max-width: 320px){
+    .popup__confirm-container{
+    min-height: 181px;
+    }
+}

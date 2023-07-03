@@ -1,0 +1,12 @@
+.page{
+    max-width: 1280px;
+    min-height: 720px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 1024px){
+    .page{
+        margin: 0;
+    }
+}

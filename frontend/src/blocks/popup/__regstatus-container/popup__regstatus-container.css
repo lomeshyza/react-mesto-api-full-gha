@@ -1,0 +1,13 @@
+.popup__regstatus-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 330px;
+    max-width: 430px;
+}
+@media screen and (max-width: 768px){
+    .popup__regstatus-container{
+        max-width: 282px;
+        min-height: 322px;
+    }
+}

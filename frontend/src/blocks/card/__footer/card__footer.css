@@ -1,0 +1,6 @@
+.card__footer{
+    display: flex;
+    padding: 22px;
+    justify-content: space-between;
+    max-width: 100%;
+    }

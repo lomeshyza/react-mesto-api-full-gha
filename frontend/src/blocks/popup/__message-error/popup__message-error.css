@@ -1,0 +1,15 @@
+.popup__message-error{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    height: 30px;
+    margin-top: 5px;
+}
+@media screen and (max-width: 768px){
+    .popup__message-error{
+        font-size: 10px;
+    }
+}

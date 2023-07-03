@@ -1,0 +1,14 @@
+.popup__update-container{
+        max-width: 430px;
+        min-height: 272px;
+    }
+@media screen and (max-width: 768px){
+    .popup__update-container{
+       
+    }
+}
+@media screen and (max-width: 320px){
+    .popup__update-container{
+        
+    }
+}

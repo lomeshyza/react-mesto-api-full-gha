@@ -1,0 +1,17 @@
+.header__container{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+@media screen and (max-width: 768px){
+    .header__container{
+        display:flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+@media screen and (max-width: 550px){
+    .header__container{
+        align-items: center;
+    }
+}

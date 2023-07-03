@@ -1,0 +1,21 @@
+.cards__container{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 23px 17px;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+ 
+@media screen and (max-width: 1024px){
+    .cards__container{
+        gap: 10px 10px; 
+    }  
+}
+@media screen and (max-width: 500px){
+    .cards__container{
+        row-gap: 23px;
+    }
+}

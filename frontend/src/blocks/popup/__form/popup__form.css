@@ -1,0 +1,14 @@
+.popup__form{
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 0;
+    width: 100%;
+    min-height: 27px;
+    display: block;
+    font-family: 'Inter','Arial', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    outline-color: rgb(53, 121, 163);
+}
