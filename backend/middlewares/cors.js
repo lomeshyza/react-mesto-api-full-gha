@@ -1,10 +1,11 @@
-// Массив доменов, с которых разрешены кросс-доменные запросы
+/* // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
   // 'https://praktikum.tk',
   // 'http://praktikum.tk',
-  'https://starts.mesto.nomoreparties.sbs/',
-  'http://starts.mesto.nomoreparties.sbs/',
+  'https://starts.mesto.nomoreparties.sbs',
+  'http://starts.mesto.nomoreparties.sbs',
   'localhost:3000',
+  'localhost:3001',
 ];
 
 const cors = (req, res, next) => {
@@ -36,3 +37,4 @@ const cors = (req, res, next) => {
 };
 
 module.exports = cors;
+ */

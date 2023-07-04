@@ -139,17 +139,19 @@ const login = (req, res, next) => {
           .then((isValidUser) => {
             if (isValidUser) {
             // создать jwt
+              const { NODE_ENV, JWT_SECRET } = process.env;
               const jwt = jsonWebToken.sign(
                 {
                   _id: user._id,
                 },
-                'SECRET',
+                NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
               );
               // прикрепить jwt
               res.cookie('jwt', jwt, {
                 maxAge: 360000,
                 httpOnly: true,
                 sameSite: true,
+                secure: true,
               });
               res.send({ data: user.toJSON() });
             } else {

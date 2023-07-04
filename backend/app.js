@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -23,7 +24,10 @@ app.use(requestLogger); // подключаем логгер запросов
 
 app.use(router); // все обработчики роутов('/api',added)
 
-app.use(cors);
+app.use(cors({
+  credentials: true,
+  origin: 'http://locathost:3001',
+}));
 
 app.use(errorLogger); // подключаем логгер ошибок
 

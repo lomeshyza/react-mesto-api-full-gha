@@ -9,6 +9,7 @@ function handleResponse(res) {
 //signup
 export function register(email, password) {
   return fetch(`${ baseUrl }/signup`, {
+    credentials: "include",
     method: "POST",
     headers: {'Accept': 'application/json',
     'Content-Type': 'application/json',},
@@ -19,6 +20,7 @@ export function register(email, password) {
 //signin
 export function login( email, password ) {
   return fetch(`${ baseUrl }/signin`, {
+    credentials: "include",
     method: "POST",
     headers:{'Accept': 'application/json',
     'Content-Type': 'application/json',},
@@ -27,6 +29,7 @@ export function login( email, password ) {
 }
 export function checkToken(jwt) {
   return fetch(`${ baseUrl }/users/me`, {
+    credentials: "include",
     method: "GET",
     headers: {
       'Accept': 'application/json',
