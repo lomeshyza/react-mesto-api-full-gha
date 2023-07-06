@@ -38,7 +38,6 @@ export class Api {
     }).then(this._handleResponse);
   }
   updateUserInfo({ name, about }) {
-    console.log(this.headers)
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this.headers,
@@ -58,7 +57,6 @@ export class Api {
     }).then(this._handleResponse);
   }
   changeLikeCardStatus(cardId, isLiked) {
-    console.log(`Это isLiked: ${JSON.stringify(isLiked)}`);
     if (isLiked) {
       return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
         method: "PUT",
@@ -72,23 +70,8 @@ export class Api {
     }
   }
 }
-/* setLike(cardId){
-        return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-            method:'PUT',
-            headers: this.headers,
-          })
-            .then(this._handleResponse);
-    }
-    deleteLike(cardId){
-        return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-            method:'DELETE',
-            headers: this.headers
-          })
-            .then(this._handleResponse);
-    } 
-  }*/
 const api = new Api({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.starts.mesto.nomoreparties.sbs",
   headers: {
     authorization: `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",

@@ -32,11 +32,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [userEmail, setUserEmail] = React.useState("");
   const navigate = useNavigate();
-  //const tempLogin = useRef();
+  
   useEffect(() => {
     Promise.all([
       api.getUserInfo(),
-      api.getInitialCards() /* , tempLogin.current() */,
+      api.getInitialCards(),
     ])
       .then(([profileInfo, cards]) => {
         setCurrentUser(profileInfo);
@@ -55,21 +55,17 @@ function App() {
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
-    // formProfileValidator.resetValidation ();
   }
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
-    //formAddValidator.resetValidation();
   }
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
-    // formEditAvatarValidator.resetValidation();
   }
   function handleConfirmDeleteClick(card) {
     setIsConfirmDeletePopupOpen(!isConfirmDeletePopupOpen);
     setSelectedCard({ name: card.name, link: card.link, _id: card._id });
-    // formConfirmDeleteValidator.resetValidation();
   }
 
   function closeAllPopups() {
@@ -183,7 +179,6 @@ function App() {
         .catch((err) => console.log(err));
     }
   }
-  //tempLogin.current = handleTokenCheck;
   useEffect(() => {
     handleTokenCheck();
   }, []);
@@ -206,9 +201,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    console.log(`Это card2: ${JSON.stringify(currentUser._id)}`);
     const isLiked = card.likes.some((i) => i === currentUser._id);
-    console.log(`Это card2: ${JSON.stringify(card)}`);
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {

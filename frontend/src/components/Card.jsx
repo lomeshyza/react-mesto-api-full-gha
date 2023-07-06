@@ -3,14 +3,11 @@ import { CurrentUserContext } from '../contexsts/CurrentUserContext';
 import {Link} from 'react-router-dom';
 
 
-function Card({onCardClick,card,onCardDelete, onCardLike}) {
+function Card({onCardClick, card, onCardDelete, onCardLike}) {
   console.log(`Это card: ${JSON.stringify(card)}`);
   
   const currentUser = React.useContext(CurrentUserContext);
-  // console.log(`Это currentUser: ${JSON.stringify(currentUser._id)}`);
-  //console.log(`Это card.owner: ${JSON.stringify(card.owner)}`);
   const isOwn = card.owner === currentUser._id;
- // console.log(`Это cardlikes: ${JSON.stringify(card.likes)}`);
 
   const isLiked = card.likes.some(i => i === currentUser._id);
  
@@ -27,7 +24,6 @@ function Card({onCardClick,card,onCardDelete, onCardLike}) {
     onCardLike(card)
   }
   return (
- 
     <li className="card">
       <Link to="/confirmdelete">
       {isOwn && <button className="card__basket" type="button" onClick={handleDeleteClick}/>}

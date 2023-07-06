@@ -145,12 +145,6 @@ const login = (req, res, next) => {
                 NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
                 { expiresIn: '7d' },
               );
-              // прикрепить jwt
-              /* res.cookie('jwt', jwt, {
-                maxAge: 360000,
-                httpOnly: true,
-                sameSite: true,
-              }); */
               res.send({ token });
             } else {
               throw new AuthError('Login or password is incorrect');
