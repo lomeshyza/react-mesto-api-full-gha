@@ -9,7 +9,6 @@
     "lint": "npx eslint ."
   },
   "author": "Gallyamova Nadezhda",
-  "homepage": "https://lomeshyza.github.io/express-mesto-gha/",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.42.0",
