@@ -4,11 +4,9 @@ import {Link} from 'react-router-dom';
 
 
 function Card({onCardClick, card, onCardDelete, onCardLike}) {
-  console.log(`Это card: ${JSON.stringify(card)}`);
   
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = card.owner === currentUser._id;
-
   const isLiked = card.likes.some(i => i === currentUser._id);
  
   const cardLikeButtonClassName = ( 

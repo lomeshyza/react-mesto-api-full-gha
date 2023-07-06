@@ -13,7 +13,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 051.250.007.045
+IP 051.250.007.045
 
 Frontend https://starts.mesto.nomoreparties.sbs
 

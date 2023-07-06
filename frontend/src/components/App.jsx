@@ -171,7 +171,6 @@ function App() {
       auth
         .checkToken(jwt)
         .then((data) => {
-          console.log(`Это data: ${JSON.stringify(data)}`);
           setUserEmail(`${data.email}`);
           setLoggedIn(true);
           navigate("/mesto-react-auth");
