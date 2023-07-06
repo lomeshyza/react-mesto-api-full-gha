@@ -1,16 +1,16 @@
-require('dotenv').config();
+const cors = require('cors');
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+const allowedCors = require('./middlewares/cors');
 const router = require('./routes');
 const errorHandler = require('./middlewares/error');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('./middlewares/cors');
 
 const app = express();
-
+app.use(cors());
 mongoose.connect('mongodb://127.0.0.1/mestodb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -19,21 +19,12 @@ mongoose.connect('mongodb://127.0.0.1/mestodb', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(allowedCors);
+app.use(router);
 
-app.use(requestLogger); // подключаем логгер запросов
+app.use(errors());
 
-app.use(router); // все обработчики роутов('/api',added)
-
-app.use(cors({
-  credentials: true,
-  origin: 'http://locathost:3001',
-}));
-
-app.use(errorLogger); // подключаем логгер ошибок
-
-app.use(errors()); // обработчик ошибок celebrate
-
-app.use(errorHandler); // централизованный обработчик ошибок
+app.use(errorHandler);
 
 app.listen(3000, () => {
   // eslint-disable-next-line no-console

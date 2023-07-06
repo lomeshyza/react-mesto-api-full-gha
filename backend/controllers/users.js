@@ -140,20 +140,18 @@ const login = (req, res, next) => {
             if (isValidUser) {
             // создать jwt
               const { NODE_ENV, JWT_SECRET } = process.env;
-              const jwt = jsonWebToken.sign(
-                {
-                  _id: user._id,
-                },
+              const token = jsonWebToken.sign(
+                { _id: user._id },
                 NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+                { expiresIn: '7d' },
               );
               // прикрепить jwt
-              res.cookie('jwt', jwt, {
+              /* res.cookie('jwt', jwt, {
                 maxAge: 360000,
                 httpOnly: true,
                 sameSite: true,
-                secure: true,
-              });
-              res.send({ data: user.toJSON() });
+              }); */
+              res.send({ token });
             } else {
               throw new AuthError('Login or password is incorrect');
             }

@@ -46,7 +46,9 @@ const createCard = (req, res, next) => {
 };
 
 const likeCard = (req, res, next) => {
+  console.log(`Это req.params.id: ${req.user._id}`);
   Card.findByIdAndUpdate(
+
     req.params.id,
     { $addToSet: { likes: req.user._id } },
     { new: true },
@@ -55,7 +57,7 @@ const likeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Not found');
       } else {
-        res.send({ message: 'Like added' });
+        res.send(card);
       }
     })
     .catch((err) => {
@@ -72,7 +74,7 @@ const dislikeCard = (req, res, next) => Card.findByIdAndUpdate(
     if (!card) {
       throw new NotFoundError('Not found');
     } else {
-      res.send({ message: 'Like deleted' });
+      res.send(card);
     }
   })
   .catch((err) => {

@@ -13,14 +13,12 @@ export class Api {
   }
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
-      credentials: "include",
       method: "GET",
       headers: this.headers,
     }).then(this._handleResponse);
   }
   addCard(data) {
     return fetch(`${this.baseUrl}/cards`, {
-      credentials: "include",
       method: "POST",
       headers: this.headers,
       "Content-Type": "application/json",
@@ -32,7 +30,6 @@ export class Api {
   }
   addAvatar(data) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
-      credentials: "include",
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
@@ -41,8 +38,8 @@ export class Api {
     }).then(this._handleResponse);
   }
   updateUserInfo({ name, about }) {
+    console.log(this.headers)
     return fetch(`${this.baseUrl}/users/me`, {
-      credentials: "include",
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({ name, about }),
@@ -50,28 +47,25 @@ export class Api {
   }
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
-      credentials: "include",
       method: "GET",
       headers: this.headers,
     }).then(this._handleResponse);
   }
   deleteCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
-      credentials: "include",
       method: "DELETE",
       headers: this.headers,
     }).then(this._handleResponse);
   }
   changeLikeCardStatus(cardId, isLiked) {
+    console.log(`Это isLiked: ${JSON.stringify(isLiked)}`);
     if (isLiked) {
       return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-        credentials: "include",
         method: "PUT",
         headers: this.headers,
       }).then(this._handleResponse);
     } else {
       return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-        credentials: "include",
         method: "DELETE",
         headers: this.headers,
       }).then(this._handleResponse);
@@ -94,10 +88,10 @@ export class Api {
     } 
   }*/
 const api = new Api({
-  baseUrl: "https://api.starts.mesto.nomoreparties.sbs",
-   headers: {
-     /* authorization: "f25ed207-d78c-464d-b0ee-85c791005c08", */
-     "Content-Type": "application/json",
+  baseUrl: "http://localhost:3000",
+  headers: {
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    "Content-Type": "application/json",
   },
 });
 export { api };

@@ -175,7 +175,8 @@ function App() {
       auth
         .checkToken(jwt)
         .then((data) => {
-          setUserEmail(`${data.data.email}`);
+          console.log(`Это data: ${JSON.stringify(data)}`);
+          setUserEmail(`${data.email}`);
           setLoggedIn(true);
           navigate("/mesto-react-auth");
         })
@@ -205,7 +206,9 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    console.log(`Это card2: ${JSON.stringify(currentUser._id)}`);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
+    console.log(`Это card2: ${JSON.stringify(card)}`);
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
