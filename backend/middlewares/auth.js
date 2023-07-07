@@ -6,7 +6,8 @@ module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   // убеждаемся, что он есть или начинается с Bearer
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    throw new AuthError('Authorization required');
+    next(new AuthError('Authorization required'));
+    return;
   }
   // извлечём токен
   const jwt = authorization.replace('Bearer ', '');
@@ -16,7 +17,7 @@ module.exports = (req, res, next) => {
     payload = jsonWebToken.verify(jwt, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'dev-secret');
   } catch (err) {
     // отправим ошибку, если не получилось
-    throw new AuthError('Authorization required');
+    next(new AuthError('Authorization required'));
   }
   req.user = payload; // записываем пейлоуд в объект запроса
 

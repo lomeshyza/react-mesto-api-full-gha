@@ -1,10 +1,10 @@
-const internalServerError = require('../utils/errors');
+const INTERNAL_SERVER_ERROR = require('../utils/errors');
 
 const errorHandler = (err, req, res, next) => {
-  const { statusCode = internalServerError, message } = err;
+  const { statusCode = INTERNAL_SERVER_ERROR, message } = err;
   res.status(statusCode)
     .send({
-      message: statusCode === internalServerError
+      message: statusCode === INTERNAL_SERVER_ERROR
         ? 'Internal Server Error'
         : message,
     });

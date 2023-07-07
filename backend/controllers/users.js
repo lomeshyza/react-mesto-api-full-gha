@@ -4,7 +4,7 @@ const User = require('../models/user');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
 const BadRequestError = require('../errors/BadRequestError');
-const { statusCreated } = require('../utils/errors');
+const { STATUS_CREATED } = require('../utils/errors');
 const AuthError = require('../errors/AuthError');
 
 const getUsers = (req, res, next) => {
@@ -19,36 +19,24 @@ const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('User not found');
-      } else {
-        res.send(user);
+        next(new NotFoundError('User not found'));
+        return;
       }
+      res.send(user);
     })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new BadRequestError('Bad request'));
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
 };
 
 const getUserById = (req, res, next) => {
   User.findById(req.params.id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('User not found');
-      } else {
-        res.send(user);
+        next(new NotFoundError('User not found'));
+        return;
       }
+      res.send(user);
     })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new BadRequestError('Bad request'));
-      } else {
-        next(err);
-      }
-    });
+    .catch(next);
 };
 
 const createUser = (req, res, next) => {
@@ -66,7 +54,7 @@ const createUser = (req, res, next) => {
         password: hash,
       })
         .then((user) => {
-          res.status(statusCreated).send({ data: user });
+          res.status(STATUS_CREATED).send({ data: user });
         })
         .catch((err) => {
           if (err.code === 11000) {
@@ -91,7 +79,7 @@ const updateAvatar = (req, res, next) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('User not found');
+        next(new NotFoundError('User not found'));
       } else {
         res.send(user);
       }
@@ -113,7 +101,7 @@ const updateProfile = (req, res, next) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('User not found');
+        next(new NotFoundError('User not found'));
       } else {
         res.send(user);
       }
@@ -133,7 +121,7 @@ const login = (req, res, next) => {
     .select('+password')
     .then((user) => {
       if (!user) {
-        throw new AuthError('Login or password is incorrect');
+        next(new AuthError('Login or password is incorrect'));
       } else {
         bcrypt.compare(String(password), user.password)
           .then((isValidUser) => {
@@ -147,7 +135,7 @@ const login = (req, res, next) => {
               );
               res.send({ token });
             } else {
-              throw new AuthError('Login or password is incorrect');
+              next(new AuthError('Login or password is incorrect'));
             }
           })
           .catch((err) => {

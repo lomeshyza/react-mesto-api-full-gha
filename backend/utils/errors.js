@@ -1,17 +1,17 @@
-const badRequest = 400;
-const authError = 401;
-const forbidden = 403;
-const notFound = 404;
-const conflictError = 409;
-const internalServerError = 500;
-const statusCreated = 201;
+const BAD_REQUEST = 400;
+const AUTH_ERRORR = 401;
+const FORBIDDEN = 403;
+const NOT_FOUND = 404;
+const CONFLICT_ERROR = 409;
+const INTERNAL_SERVER_ERROR = 500;
+const STATUS_CREATED = 201;
 
 module.exports = {
-  badRequest,
-  authError,
-  forbidden,
-  notFound,
-  conflictError,
-  internalServerError,
-  statusCreated,
+  BAD_REQUEST,
+  AUTH_ERRORR,
+  FORBIDDEN,
+  NOT_FOUND,
+  CONFLICT_ERROR,
+  INTERNAL_SERVER_ERROR,
+  STATUS_CREATED,
 };

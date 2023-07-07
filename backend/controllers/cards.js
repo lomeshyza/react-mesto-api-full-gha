@@ -2,7 +2,7 @@ const Card = require('../models/card');
 const NotFoundError = require('../errors/NotFoundError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const BadRequestError = require('../errors/BadRequestError');
-const { statusCreated } = require('../utils/errors');
+const { STATUS_CREATED } = require('../utils/errors');
 
 const getCards = (req, res, next) => {
   Card.find({})
@@ -16,13 +16,15 @@ const deleteCardById = (req, res, next) => {
   Card.findById(req.params.id)
     .then((card) => {
       if (!card) {
-        throw new NotFoundError('Card not found');
+        next(new NotFoundError('Card not found'));
+        return;
       }
       if (card.owner.toString() !== req.user._id) {
-        throw new ForbiddenError('Not enough rights to delete the card');
-      } else {
-        return Card.findByIdAndRemove(card._id).then(() => res.send({ message: 'Card deleted' }));
+        next(new ForbiddenError('Not enough rights to delete the card'));
       }
+      Card.deleteOne()
+        .then(() => res.send({ message: 'Card deleted' }))
+        .catch(next);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -35,7 +37,7 @@ const deleteCardById = (req, res, next) => {
 
 const createCard = (req, res, next) => {
   Card.create({ ...req.body, owner: req.user._id })
-    .then((card) => res.status(statusCreated).send(card))
+    .then((card) => res.status(STATUS_CREATED).send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Bad request'));
@@ -53,10 +55,10 @@ const likeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) {
-        throw new NotFoundError('Not found');
-      } else {
-        res.send(card);
+        next(new NotFoundError('Not found'));
+        return;
       }
+      res.send(card);
     })
     .catch((err) => {
       next(err);
@@ -70,10 +72,10 @@ const dislikeCard = (req, res, next) => Card.findByIdAndUpdate(
 )
   .then((card) => {
     if (!card) {
-      throw new NotFoundError('Not found');
-    } else {
-      res.send(card);
+      next(new NotFoundError('Not found'));
+      return;
     }
+    res.send(card);
   })
   .catch((err) => {
     next(err);
