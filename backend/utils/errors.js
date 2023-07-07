@@ -1,5 +1,5 @@
 const BAD_REQUEST = 400;
-const AUTH_ERRORR = 401;
+const AUTH_ERROR = 401;
 const FORBIDDEN = 403;
 const NOT_FOUND = 404;
 const CONFLICT_ERROR = 409;
@@ -8,7 +8,7 @@ const STATUS_CREATED = 201;
 
 module.exports = {
   BAD_REQUEST,
-  AUTH_ERRORR,
+  AUTH_ERROR,
   FORBIDDEN,
   NOT_FOUND,
   CONFLICT_ERROR,

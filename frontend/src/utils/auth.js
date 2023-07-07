@@ -1,6 +1,5 @@
-// export const baseUrl = "https://api.starts.mesto.nomoreparties.sbs";
-export const baseUrl = "http://localhost:3000";
-
+export const baseUrl = "https://api.starts.mesto.nomoreparties.sbs";
+//export const baseUrl = "http://localhost:3000";
 
 function handleResponse(res) {
     if (res.ok) {

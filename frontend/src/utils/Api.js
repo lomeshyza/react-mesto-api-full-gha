@@ -71,8 +71,8 @@ export class Api {
   }
 }
 const api = new Api({
-  // baseUrl: "https://api.starts.mesto.nomoreparties.sbs",
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.starts.mesto.nomoreparties.sbs",
+  // baseUrl: "http://localhost:3000",
   headers: {
     authorization: `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
