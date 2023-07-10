@@ -27,11 +27,7 @@ const deleteCardById = (req, res, next) => {
         .catch(next);
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new BadRequestError('Bad request'));
-      } else {
-        next(err);
-      }
+      next(err);
     });
 };
 

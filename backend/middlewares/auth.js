@@ -18,6 +18,7 @@ module.exports = (req, res, next) => {
   } catch (err) {
     // отправим ошибку, если не получилось
     next(new AuthError('Authorization required'));
+    return;
   }
   req.user = payload; // записываем пейлоуд в объект запроса
 
